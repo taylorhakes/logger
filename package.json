@@ -1,0 +1,41 @@
+{
+  "name": "logger",
+  "version": "0.0.2",
+  "description": "Browser error and performance logger",
+  "main": "Logger.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglifyjs": "^0.5.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma": "^0.12.24",
+    "karma-jasmine": "^0.2.3",
+    "karma-coverage": "^0.2.6"
+  },
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taylorhakes/logger"
+  },
+  "keywords": [
+    "logging",
+    "logger",
+    "console",
+    "performance",
+    "errors"
+  ],
+  "author": "Taylor Hakes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taylorhakes/logger/issues"
+  },
+  "homepage": "https://github.com/taylorhakes/logger"
+}
