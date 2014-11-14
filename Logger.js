@@ -59,7 +59,11 @@
 		this._addLog(this.logLevels.ERROR, 'error', options);
 	};
 
-
+	/**
+	 * Get the log object for a single log
+	 * @param {string} id
+	 * @returns {object}
+	 */
 	Logger.prototype.getLog = function(id) {
 		var parts = id.split(':'),
 			hasGroup = parts.length > 1;
@@ -111,9 +115,16 @@
 	 * @returns {string}
 	 */
 	Logger.prototype.getDifference = function(firstLogId, secondLogId) {
-		return getTimeStr(this.getLog(firstLogId).time - this.getLog(secondLogId))
+		return getTimeStr(this.getLog(secondLogId).time - this.getLog(firstLogId).time)
 	};
 
+	/**
+	 * Listen for a specific log event, always async
+	 * @param {object} options
+	 * @param {string} [options.id]
+	 * @param {string} [options.group]
+	 * @param {function} fn Callback
+	 */
 	Logger.prototype.listen = function(options, fn) {
 		this._listeners.push({
 			options: options,
@@ -121,10 +132,13 @@
 		});
 	};
 
+	/**
+	 * Clear all logs
+	 */
 	Logger.prototype.clearAll = function() {
 		this._groups = {};
 		this._logs = [];
-	}
+	};
 
 	Logger.prototype._addLog = function(logLevel, consoleFn, options) {
 		var parts = options.id.split(':'),
@@ -170,7 +184,7 @@
 		for (var i = 0, len = this._listeners.length; i < len; i++) {
 			listener = this._listeners[i];
 			if ( listener.group === log.group || listener.level <= log.level) {
-				listener.fn(options);
+				listener.fn(log);
 			}
 		}
 	};

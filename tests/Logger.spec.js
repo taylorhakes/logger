@@ -4,9 +4,7 @@
 	describe('Logger', function() {
 		var Date = window.Date;
 		beforeEach(function() {
-			spyOn(window, 'Date').and.callFake(function() {
-				return new Date(1414975166997);
-			});
+			spyOn(window, 'Date').and.returnValue(new Date(1414975166997));
 			spyOn(console, 'log');
 			spyOn(console, 'warn');
 			spyOn(console, 'error');
@@ -83,21 +81,17 @@
 		describe('getDifference', function() {
 
 			it('string difference', function() {
-				window.Date.and.callFake(function() {
-					return new Date(1414975166997);
-				});
+				window.Date.and.returnValue(new Date(1414975166923));
 				Logger.log({
 					id: 'cool:time',
 					data: 'fun'
 				});
-				window.Date.and.callFake(function() {
-					return new Date(5414975167997);
-				});
+				window.Date.and.returnValue(new Date(5414975167997));
 				Logger.log({
 					id: 'three:four',
 					data: 'fun'
 				});
-				expect(Logger.getDifference('cool:time', 'three:four')).toBe('hello');
+				expect(Logger.getDifference('cool:time', 'three:four')).toBe('4000000001s 74ms');
 			});
 		});
 	});
